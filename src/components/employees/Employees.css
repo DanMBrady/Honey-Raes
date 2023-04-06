@@ -1,0 +1,85 @@
+.employees{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.employee{
+    background-color: rgb(75, 22, 190);
+    color:white;
+    padding: 2px;
+    margin: 20px;
+    width:40%;
+    display:flex;
+    flex-direction: column;
+    height:340px;
+    align-items: center;
+    justify-content: center;
+    border:5px solid rgb(11, 10, 11);
+    border-radius:20px ;
+
+}
+
+.customer{
+    background-color: rgb(2, 33, 124);
+    color:white;
+    padding: 2px;
+    margin: 20px;
+    width:40%;
+    display:flex;
+    flex-direction: column;
+    height:340px;
+    align-items: center;
+    justify-content: center;
+    border:5px solid rgb(11, 10, 11);
+    border-radius:20px ;
+
+}
+
+.photos{
+    height: 190px;
+}
+.employeeLink{
+    color:white;
+    text-decoration:none;
+}
+
+.employeeLink:hover{
+    color:rgb(201, 201, 201);
+}
+
+.employeeDetailBox{
+    background: rgb(75, 22, 190);
+    width:50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color:white;
+    border-radius: 20px;
+    margin-top:100px;
+    height: 450px;
+    justify-content: center;
+    border:5px solid black;
+}
+
+.customerDetailBox{
+    background:  rgb(2, 33, 124);
+    width:50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color:white;
+    border-radius: 20px;
+    margin-top:100px;
+    height: 450px;
+    justify-content: center;
+    border:5px solid black;
+}
+
+.employeeDetailContainer{
+    
+    width:100%;
+    display:flex;
+    justify-content: center;
+}
