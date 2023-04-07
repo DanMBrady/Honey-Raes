@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-
+import { Link } from "react-router-dom"
 
 export const EmployeeForm = () => {
     // TODO: Provide initial state for profile
@@ -23,7 +23,12 @@ export const EmployeeForm = () => {
         userId:null,
     })
 
-    const [photo,setPhoto]=useState("")
+    const [extra,setExtra]=useState({
+        photo:"",
+        email:"",
+        fullName:"",
+        isStaff:true,
+    })
     
 
     const localHoneyUser =localStorage.getItem("honey_user")
@@ -46,7 +51,7 @@ export const EmployeeForm = () => {
         .then(response => response.json())
         .then((data)=>{
             const employeeObject =data[0]
-         setPhoto(employeeObject.photo)
+         setExtra(employeeObject)
         })
         
     },[]
@@ -55,9 +60,7 @@ export const EmployeeForm = () => {
 
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
-        const objectPhoto ={
-            photo:photo
-        }
+        
 
         return fetch(`http://localhost:8088/employees/${profile.id}`,{
             method:"PUT",
@@ -68,11 +71,11 @@ export const EmployeeForm = () => {
         })
         .then(response=>response.json())
         .then(fetch(`http://localhost:8088/users/${profile.userId}`,{
-            method:"PATCH",
+            method:"PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body:JSON.stringify(objectPhoto)
+            body:JSON.stringify(extra)
         }))
         //.then(response=>response.json())
         .then(() => {
@@ -90,7 +93,7 @@ export const EmployeeForm = () => {
          <div className={`${feedback.includes("Error") ? "error" : "feedback"} ${feedback === "" ? "invisible" : "visible"}`}>
          {feedback}
         </div>  
-            <article><img className="photos"src ={photo}></img></article>
+        <article><Link to={`photo/${extra.id}`}><img className="photos"src ={extra.photo}></img></Link></article>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="specialty">Specialty:</label>
@@ -115,11 +118,13 @@ export const EmployeeForm = () => {
                         required autoFocus
                         type="text"
                         className="form-control"
-                        value={photo}
+                        value={extra.photo}
                         onChange={
                             (evt) => {
                                 
-                                setPhoto(evt.target.value)
+                                const copy ={...extra}
+                                copy.photo =evt.target.value
+                                setExtra(copy)
                             }
                         } />
                 </div>

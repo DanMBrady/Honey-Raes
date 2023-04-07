@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import "./Ticket.css"
 
 export const TicketList = ({ searchTermState }) => {
@@ -102,6 +103,14 @@ export const TicketList = ({ searchTermState }) => {
                         <article><img className="photos"src={ticket?.user?.photo}></img></article>
                         </div>
                         <div className="employeeTicket">
+                        <header>
+                            {honeyUserObject.staff ? "" :
+                        <header>
+                         <Link to={`/tickets/${ticket.id}/edit`}>Ticket {ticket.id}</Link>
+                        </header>
+                        
+                }
+                        </header>
                         <header>{ticket.description}</header>
                         <footer>Emergency: {ticket.emergency ? "yes" : "No"}</footer>
                         </div>

@@ -3,6 +3,7 @@ import { CustomerDetails } from "../customers/CustomerDetails"
 import { CustomerList } from "../customers/CustomerList"
 import { EmployeeDetails } from "../employees/EmployeeDetails"
 import { EmployeeList } from "../employees/EmployeeList"
+import { EmployeePhoto } from "../profile/EmployeePhoto"
 import { Profile } from "../profile/Profile"
 import { TicketContainer } from "../tickets/TicketContainer"
 import { TicketForm } from "../tickets/TicketForm"
@@ -27,7 +28,8 @@ export const EmployeeViews = () => {
                 <Route path="employees/:employeeId" element={ <EmployeeDetails />} />
                 <Route path="customers" element={ <CustomerList />} />
                 <Route path="customers/:customerId" element={ <CustomerDetails />} />
-
+                <Route path="profile/photo/:photoId" element={ <EmployeePhoto/>} />
+                
             </Route>
         </Routes>
     )

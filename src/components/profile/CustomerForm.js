@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 export const CustomerForm =()=>{
 
@@ -80,7 +81,8 @@ export const CustomerForm =()=>{
             <div className={`${feedback.includes("Error") ? "error" : "feedback"} ${feedback === "" ? "invisible" : "visible"}`}>
          {feedback}
         </div>  
-            <article><img className="photos"src ={extra.photo}></img></article>
+        <article><Link to={`photo/${extra.id}`}><img className="photos"src ={extra.photo}></img></Link></article>
+            
             <article></article>
             <fieldset>
                 <div className="form-group">

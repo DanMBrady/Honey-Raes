@@ -1,0 +1,14 @@
+.photoContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:1000px;
+    background-color: rgb(39, 136, 254);
+    border-radius: 20px;
+    border:5px solid black;
+    margin-top:100px
+}
+
+.photoPage{
+    height:800px;
+}
