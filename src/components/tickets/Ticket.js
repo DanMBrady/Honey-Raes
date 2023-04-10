@@ -4,6 +4,9 @@ import { Link } from "react-router-dom"
 export const Ticket =({ ticketObject,employees,currentUser,getAllTickets})=>{
    
 
+
+
+
 const userEmployee=employees.find(employee=> employee.userId=== currentUser.id)
 
 
@@ -13,6 +16,35 @@ if(ticketObject.employeeTickets.length > 0){
 const ticketEmployeeRelationship = ticketObject.employeeTickets[0]
 assigenedEmployee = employees.find(employee => employee.id===ticketEmployeeRelationship.employeeId)
 
+}
+
+
+const canClose =()=>{
+    if(userEmployee?.id===assigenedEmployee?.id && ticketObject.dateCompleted === ""&&currentUser.staff === true){
+        return <button onClick={closeTicket}className="ticketFinish">Finish</button>
+    }
+    else{
+        return ""
+    }
+}
+
+const closeTicket =()=>{
+    const copy ={
+        userId:ticketObject.userId,
+        description:ticketObject.description,
+        emergency:ticketObject.emergency,
+        dateCompleted: new Date()
+    }
+
+    return fetch(`http://localhost:8088/serviceTickets/${ticketObject.id}`,{
+        method:"PUT",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(copy)
+    })
+    .then(response=>response.json())
+    .then(getAllTickets)
 }
 
 
@@ -64,6 +96,11 @@ const buttonOrNoButton =() =>{
             ? `Currently being worked on by ${assigenedEmployee !== null ? assigenedEmployee?.user?.fullName : "" }`
             : buttonOrNoButton()
         }
+        <article>
+        {
+            canClose()
+        }
+        </article>
     </footer>
     </div>
 </section>
