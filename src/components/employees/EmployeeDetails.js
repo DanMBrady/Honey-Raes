@@ -23,7 +23,7 @@ export const EmployeeDetails =() =>{
             <div>Position: {employee.role}</div>
             <div>Skills: {employee.specialty}</div>
             <div>Email: {employee?.user?.email}</div>
-            <footer>Currently working on {employee?.employeeTickets?.length} {employee?.employeeTickets?.length >1? "tickets":"ticket"}</footer>
+            <footer>Currently working on {employee?.employeeTickets?.length} {employee?.employeeTickets?.length ===1? "ticket":"tickets"}</footer>
    </div>
    </div>
   

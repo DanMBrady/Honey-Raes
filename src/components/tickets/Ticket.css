@@ -18,8 +18,10 @@
     
 }
 
-.employeeTicket{
-    display: flex;
-    flex-direction: column;
-    
+.ticketTop{
+    width:50%;
+}
+
+.ticketBottom{
+    width:50%;
 }
