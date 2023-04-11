@@ -25,3 +25,12 @@
 .ticketBottom{
     width:50%;
 }
+
+
+.claimButton{
+  
+    background: rgb(26, 85, 249);
+    color:white;
+    font-weight: 600;
+}
+

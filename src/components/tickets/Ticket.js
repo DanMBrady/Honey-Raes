@@ -21,12 +21,29 @@ assigenedEmployee = employees.find(employee => employee.id===ticketEmployeeRelat
 
 const canClose =()=>{
     if(userEmployee?.id===assigenedEmployee?.id && ticketObject.dateCompleted === ""&&currentUser.staff === true){
-        return <button onClick={closeTicket}className="ticketFinish">Finish</button>
+        return <button onClick={closeTicket}className="claimButton">Finish</button>
     }
     else{
         return ""
     }
 }
+
+const deleteButton =()=>{
+    if(currentUser.staff === false || ticketObject.dateCompleted !== ""){
+        return <button onClick={()=>{
+            fetch(`http://localhost:8088/serviceTickets/${ticketObject.id}`,{
+                method:"DELETE"
+            })
+            .then(()=>{
+                getAllTickets()
+            })
+        }}className="claimButton">Delete</button>
+    }
+    else{
+        return ""
+    }
+}
+
 
 const closeTicket =()=>{
     const copy ={
@@ -50,7 +67,7 @@ const closeTicket =()=>{
 
 const buttonOrNoButton =() =>{
     if(currentUser.staff){
-        return <button
+        return <button className="claimButton"
         onClick={()=>{
             fetch(`http://localhost:8088/employeeTickets`,{
                 method:"POST",
@@ -99,6 +116,9 @@ const buttonOrNoButton =() =>{
         <article>
         {
             canClose()
+        }
+        {
+            deleteButton()
         }
         </article>
     </footer>
